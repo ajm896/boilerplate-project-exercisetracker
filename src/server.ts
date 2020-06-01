@@ -1,15 +1,15 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
+import express, { Response, NextFunction, Request } from 'express';
+import bodyParser from 'body-parser';
+import mongoose, { Error } from 'mongoose';
+import cors from 'cors';
 
-const cors = require('cors')
+const app = express();
 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
+mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track')
 
 app.use(cors())
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
@@ -21,11 +21,11 @@ app.get('/', (req, res) => {
 
 // Not found middleware
 app.use((req, res, next) => {
-  return next({status: 404, message: 'not found'})
-})
+  return next({ status: 404, message: 'not found' })
+});
 
 // Error Handling middleware
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   let errCode, errMessage
 
   if (err.errors) {
@@ -44,5 +44,5 @@ app.use((err, req, res, next) => {
 })
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
+  console.log('Your app is listening on ' + listener.address())
 })

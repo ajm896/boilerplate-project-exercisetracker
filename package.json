@@ -4,23 +4,33 @@
 	"description": "A REST API project, part of Free Code Camp's curriculum",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "npm run dev",
+		"build": "tsc",
+		"dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
 	},
 	"dependencies": {
-		"express": "^4.14.0",
-		"mongoose": "^5.9.16",
-		"mongodb": "^3.5.8",
 		"body-parser": "^1.15.2",
 		"cors": "^2.8.1",
-		"shortid": "^2.2.6"
+		"express": "^4.14.0",
+		"mongodb": "^3.5.8",
+		"mongoose": "^5.9.16",
+		"shortid": "^2.2.6",
+		"typescript": "^3.9.3"
 	},
 	"repository": {
-		"url": "https://gomix.com/#!/project/welcome-project"
+		"url": "https://github.com/ajm896/boilerplate-project-exercisetracker"
 	},
 	"license": "MIT",
 	"keywords": [
 		"node",
 		"gomix",
 		"express"
-	]
+	],
+	"devDependencies": {
+		"@types/cors": "^2.8.6",
+		"@types/express": "^4.17.6",
+		"@types/mongoose": "^5.7.21",
+		"ts-node": "^8.10.2",
+		"ts-node-dev": "^1.0.0-pre.44"
+	}
 }
